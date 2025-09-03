@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Laravel\ServiceProvider;
+
 return [
 
     /*
@@ -123,4 +125,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => ServiceProvider::defaultProviders()->merge([
+    // ...
+    // Remove these Pest-related providers:
+    // NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class,
+    // Pest\Laravel\PestServiceProvider::class,
+    ])->toArray(),
 ];
