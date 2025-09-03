@@ -1,6 +1,9 @@
 <?php
 
 use Carbon\Laravel\ServiceProvider;
+use Illuminate\Auth\AuthServiceProvider;
+use Illuminate\Events\EventServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 return [
 
@@ -126,9 +129,17 @@ return [
     ],
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-    // ...
-    // Remove these Pest-related providers:
-    // NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class,
-    // Pest\Laravel\PestServiceProvider::class,
-    ])->toArray(),
+    /*
+     * Package Service Providers...
+     */
+    
+    /*
+     * Application Service Providers...
+     */
+    App\Providers\AppServiceProvider::class,
+    AuthServiceProvider::class,
+    // App\Providers\BroadcastServiceProvider::class, // Only if using broadcasting
+    EventServiceProvider::class,
+    RouteServiceProvider::class,
+])->toArray(),
 ];
