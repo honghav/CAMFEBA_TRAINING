@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\FCategoryController;
 use App\Http\Controllers\Frontend\FHomepageController;
 use App\Http\Controllers\Frontend\TrianingController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -22,6 +23,7 @@ Route::get('/dashboard', function () {
 Route::get('/local', function () {
     return view('Traning.local');
 });
+Log::infor('info log');
 // Forntend Site
 Route::resource('home', FHomepageController::class);
 Route::resource('category', FCategoryController::class);
