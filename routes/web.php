@@ -39,5 +39,12 @@ Route::middleware('auth')->group(function () {
 
 // Route::resource('category', CategoryTrainingController::class);
 // Route::resource('source', SourceController::class);
-
+// Add this temporary route for testing
+Route::get('/health', function() {
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => now(),
+        'environment' => app()->environment()
+    ]);
+});
 require __DIR__.'/auth.php';

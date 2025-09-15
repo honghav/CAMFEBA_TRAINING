@@ -132,8 +132,8 @@
 
                 <!-- Training Select -->
                 <div class="mb-4">
-                    <label for="training_id" class="form-label fw-bold">Select Training</label>
-                    <input type="text" name="training_id" id="training_id" 
+                    {{-- <label for="training_id" class="form-label fw-bold">Select Training</label> --}}
+                    <input type="text" hidden name="training_id" id="training_id" 
                         value="{{ $training }}"
                         readonly
                         class="form-control bg-light @error('training_id') is-invalid @enderror" required>

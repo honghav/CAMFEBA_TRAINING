@@ -3,6 +3,7 @@
 use Carbon\Laravel\ServiceProvider;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Events\EventServiceProvider;
+use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 return [
@@ -136,7 +137,7 @@ return [
     /*
      * Application Service Providers...
      */
-    App\Providers\AppServiceProvider::class,
+    AppServiceProvider::class,
     AuthServiceProvider::class,
     // App\Providers\BroadcastServiceProvider::class, // Only if using broadcasting
     EventServiceProvider::class,

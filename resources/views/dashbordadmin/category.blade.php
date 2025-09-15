@@ -38,7 +38,7 @@
             <td class="border px-4 py-2">{{ $category->name }}</td>
             <td class="border px-4 py-2">{{ $category->description }}</td>
             <td class="border px-4 py-2">
-              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editCategoryModal-{{ $category->id }}">
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#manageCategoryModal-{{ $category->id }}">
                 Edit
               </button>
             </td>
@@ -49,9 +49,109 @@
             </td>
           </tr>
 
-          {{-- Edit & Delete Modals (your previous modal code here) --}}
+          {{-- Manage Category Modal --}}
+          <div class="modal fade" id="manageCategoryModal-{{ $category->id }}" tabindex="-1" aria-labelledby="manageCategoryModalLabel-{{ $category->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="{{ route('tablecategory.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="manageCategoryModalLabel-{{ $category->id }}">Manage Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                      <label for="name-{{ $category->id }}" class="form-label">Category Name</label>
+                      <input type="text" class="form-control" id="name-{{ $category->id }}" name="name" value="{{ $category->name }}" required>
+                    </div>
+                    <!-- Description -->
+                    <div class="mb-3">
+                      <label for="description-{{ $category->id }}" class="form-label">Description</label>
+                      <textarea class="form-control" id="description-{{ $category->id }}" name="description" rows="3" required>{{ $category->description }}</textarea>
+                    </div>
+                    <!-- Cover Image -->
+                    <div class="mb-3">
+                      @if($category->cover)
+                        <div class="mb-2">
+                          <img src="{{ asset('storage/' . $category->cover) }}" alt="Category Image" class="img-fluid rounded" style="max-height:100px;">
+                        </div>
+                      @endif
+                      <label for="cover-{{ $category->id }}" class="form-label">Cover Image</label>
+                      <input type="file" class="form-control" id="cover-{{ $category->id }}" name="cover" accept="image/*">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {{-- Delete Category Modal --}}
+          <div class="modal fade" id="deleteCategoryModal-{{ $category->id }}" tabindex="-1" aria-labelledby="deleteCategoryModalLabel-{{ $category->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="{{ route('tablecategory.destroy', $category->id) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCategoryModalLabel-{{ $category->id }}">Delete Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you want to delete the category "<strong>{{ $category->name }}</strong>"?</p>
+                    <p>This action cannot be undone.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete Category</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         @endforeach
       </x-bladewind::table>
+    </div>
+  </div>
+</div>
+
+{{-- Insert Category Modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="insertCategoryLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="{{ route('tablecategory.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="insertCategoryLabel">Insert Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Category Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Category Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" required>
+          </div>
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description" required></textarea>
+          </div>
+          <!-- Cover Image -->
+          <div class="mb-3">
+            <label for="cover" class="form-label">Cover Image</label>
+            <input type="file" class="form-control" id="cover" name="cover" accept="image/*">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
