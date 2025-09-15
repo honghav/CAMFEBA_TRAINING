@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 Route::get('/local', function () {
     return view('Traning.local');
 });
-Log::infor('info log');
+Log::info('info log');
 // Forntend Site
 Route::resource('home', FHomepageController::class);
 Route::resource('category', FCategoryController::class);
