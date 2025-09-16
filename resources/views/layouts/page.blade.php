@@ -1,18 +1,3 @@
-@push('head')
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "CAMFEBA Academy",
-          "url": "{{ url('/') }}",
-          "logo": "{{ asset('images/logo.png') }}",
-          "sameAs": [
-            "https://www.facebook.com/CAMFEBA",
-            "https://twitter.com/CAMFEBA"
-          ]
-        }
-        </script>
-        @endpush
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -20,87 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('tittle',config('app.name', 'CAMFEBA Academy'))</title>
+    <title>@yield('title', config('app.name', 'CAMFEBA Academy'))</title>
 
     <meta name="description" content="@yield('description', 'CAMFEBA Academy offers professional training in Cambodia.')">
     <meta name="keywords" content="@yield('keywords', 'training, Cambodia, courses, CAMFEBA')">
     <meta name="author" content="CAMFEBA">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-    <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="@yield('title', 'CAMFEBA ACADEMY')" />
-    <meta property="og:description" content="@yield('description', 'CAMFEBA Academy offers professional training in Cambodia.')" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="@yield('title', 'CAMFEBA Academy')" />
+    <meta property="og:description" content="@yield('description', 'Professional training in Cambodia')" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="@yield('image', asset('images/logo.png'))" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', 'CAMFEBA ACADEMY')">
-    <meta name="twitter:description" content="@yield('description', 'CAMFEBA Academy offers professional training in Cambodia.')">
+    <meta name="twitter:title" content="@yield('title', 'CAMFEBA Academy')">
+    <meta name="twitter:description" content="@yield('description', 'Professional training in Cambodia')">
     <meta name="twitter:image" content="@yield('image', asset('images/logo.png'))">
-    
-    <!-- Other head content -->
-    @stack('head')
 
-    <!-- Fonts -->
+    <!-- Structured Data -->
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "Organization",
+            "name" => "CAMFEBA Academy",
+            "url" => url('/'),
+            "logo" => asset('images/logo-academy.jpg'),
+            "sameAs" => [
+                "https://web.facebook.com/profile.php?id=100063664806283"
+            ]
+        ];
+        @endphp
+
+        <script type="application/ld+json">
+        {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+
+    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Bootstrap CSS (for components if you want to mix with Tailwind) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Tailwind + App Styles/JS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
+    @stack('head')
 </head>
 <body class="font-sans text-gray-900 antialiased bg-gray-100 dark:bg-gray-900">
 
-    <!-- Navbar -->
+    <!-- Header -->
     <header class="w-full bg-white dark:bg-gray-800 shadow">
-    <div class="container mx-auto flex justify-between items-center px-4 py-3">
-        <!-- Logo and Title -->
-        <a href="/" class="flex items-center gap-2">
-            <x-application-logo class="w-10 h-10 fill-current text-gray-500" />
-            <span class="font-bold text-lg text-gray-700 dark:text-gray-200">
-                CAMFEBA ACADEMY
-            </span>
-        </a>
+        <div class="container mx-auto flex justify-between items-center px-4 py-3">
+            <a href="/" class="flex items-center gap-2">
+                <x-application-logo class="w-10 h-10 fill-current text-gray-500" />
+                <span class="font-bold text-lg text-gray-700 dark:text-gray-200">CAMFEBA ACADEMY</span>
+            </a>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
+            <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
 
-        <!-- Navigation Links -->
-        <nav id="menu" class="hidden md:flex gap-6">
-            <a href="/home" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Home</a>
-            <a href="/category" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Trainings</a>
-            <a href="/aboutus" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">About</a>
-        </nav>
-    </div>
+            <nav id="menu" class="hidden md:flex gap-6" aria-label="Main navigation">
+                <a href="/home" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Home</a>
+                <a href="/category" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Trainings</a>
+                <a href="/aboutus" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">About</a>
+            </nav>
+        </div>
 
-    <!-- Mobile Menu Links -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <a href="/home" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Home</a>
-        <a href="/category" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Trainings</a>
-        <a href="/aboutus" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">About</a>
-    </div>
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+            <a href="/home" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Home</a>
+            <a href="/category" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Trainings</a>
+            <a href="/aboutus" class="block py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">About</a>
+        </div>
 
-    <!-- Toggle Script -->
-    <script>
-        const toggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        toggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
-</header>
-
+        <script>
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+        </script>
+    </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
@@ -110,12 +97,13 @@
     <!-- Footer -->
     <footer class="w-full bg-white dark:bg-gray-800 shadow mt-12">
         <div class="container mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-gray-600 dark:text-gray-300">
-             <!-- Contact Info -->
+            
+            <!-- Contact Info -->
             <div>
                 <h3 class="font-semibold text-gray-700 dark:text-gray-200 mb-3">Contact</h3>
                 <p>Page: <a href="https://web.facebook.com/profile.php?id=100063664806283" class="hover:text-blue-600 dark:hover:text-blue-400">CAMFEBA ACADEMY</a></p>
                 <p>Email: <a href="mailto:training@camfeba.com" class="hover:text-blue-600 dark:hover:text-blue-400">training@camfeba.com</a></p>
-                <p>Phone: <a href="tel:+85523 230 022" class="hover:text-blue-600 dark:hover:text-blue-400">+855 23 230 022</a></p>
+                <p>Phone: <a href="tel:+85523230022" class="hover:text-blue-600 dark:hover:text-blue-400">+855 23 230 022</a></p>
                 <p>Address: Business Development Center (BDC), 8th floor, OCIC Blvd, 12110, Phnom Penh, Cambodia</p>
                 <div class="mt-4">
                     <iframe
@@ -137,7 +125,7 @@
                 </ul>
             </div>
 
-            <!-- Branding & Copyright -->
+            <!-- Branding -->
             <div class="text-center md:text-right">
                 <x-application-logo class="w-10 h-10 mx-auto md:mx-0 fill-current text-gray-500 mb-2" />
                 <p class="font-bold text-gray-700 dark:text-gray-200">CAMFEBA ACADEMY</p>
@@ -148,9 +136,5 @@
         </div>
     </footer>
 
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-</body>
-</html>
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr
