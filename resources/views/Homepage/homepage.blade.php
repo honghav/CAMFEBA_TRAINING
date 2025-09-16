@@ -17,7 +17,7 @@
 
                 <!-- Banner Image -->
                 <div class="mt-10 relative lg:mt-0 lg:col-span-6">
-                    <img src="{{ asset('storage/images/banner-homepage.jpg') }}" 
+                    <img src="{{ asset('images/banner-homepage.jpg') }}" 
                         alt="App preview" 
                         class="w-full max-w-lg mx-auto drop-shadow-2xl rounded-xl">
                 </div>
@@ -34,7 +34,7 @@
                     We focus on user-friendly solutions that save time and deliver results.
                 </p>
             </div>
-            <img src="{{ asset('storage/images/banner-homepage.jpg') }}" alt="About" class="rounded-2xl shadow-lg mt-10 lg:mt-0">
+            <img src="{{ asset('images/banner-homepage.jpg') }}" alt="About" class="rounded-2xl shadow-lg mt-10 lg:mt-0">
         </div>
     </section>
 
