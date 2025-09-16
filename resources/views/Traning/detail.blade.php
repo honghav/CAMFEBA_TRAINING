@@ -5,7 +5,7 @@
     {{-- <div class="container mx-auto px-4 py-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"> --}}
         {{-- @foreach ($training as $train) --}}
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition flex flex-col p-12">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl transition flex flex-col p-12">
                 
                 {{-- Cover Image --}}
                 <div class="w-full h-80">
@@ -55,7 +55,7 @@
                     @foreach ($sources as $sou)
                         @if($sou->image)
                             <div class="w-48 h-48 bg-gray-200 p-2 rounded-lg flex justify-center items-center cursor-pointer">
-                                <img src="{{ asset($sou->image) }}" 
+                                <img src="{{ asset('storage/'.$sou->image) }}" 
                                     alt="Preview Image" 
                                     class="w-full h-full object-contain rounded-lg"
                                     data-bs-toggle="modal" 
@@ -67,13 +67,13 @@
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                 <div class="modal-body p-0">
-                                    <img src="{{ asset($sou->image) }}" 
+                                    <img src="{{ asset('storage/'.$sou->image) }}" 
                                         alt="Preview Image" 
                                         class="w-full h-full object-contain">
                                 </div>
                                 <div class="modal-footer justify-between">
                                     <!-- Download Button -->
-                                    <a href="{{ asset($sou->image) }}" 
+                                    <a href="{{ asset('storage/'.$sou->image) }}" 
                                     download 
                                     class="btn btn-success">
                                         Download

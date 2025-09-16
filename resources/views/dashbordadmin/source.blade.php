@@ -35,7 +35,7 @@
                     <td class=" border p-4">
                         @if($sou->image)
                             <div class="w-[160px] h-[100px] mx-auto">
-                                <img src="{{ asset($sou->image) }}" 
+                                <img src="{{ asset('storage/'.$sou->image) }}" 
                                     alt="Source Image" 
                                     class="object-cover w-full h-full rounded shadow-sm">
                             </div>

@@ -8,11 +8,11 @@
         <div class="w-[1000px] h-[500px] aspect-[4/3]">
             <img src="{{ asset($category->cover) }}" 
                  alt="Training Courses" 
-                 class="w-full h-full object-contain rounded-xl shadow-2xl">
+                 class="w-full h-full object-contain rounded-xl">
         </div>
 
         <!-- Name and Description Below -->
-        <div class="py-12 my-8 bg-gray-100 rounded-xl shadow-lg px-4">
+        <div class="py-12 my-8 bg-gray-100 rounded-xl px-4">
             <h1 class="text-2xl font-extrabold sm:text-3xl lg:text-4xl ">
                 {{ $category->name }}
             </h1>
@@ -32,9 +32,9 @@
         <div class="flex flex-wrap justify-center gap-6">
         @foreach ($training as $train)
         
-            <div class="bg-white w-[350px] rounded-2xl shadow-md hover:shadow-lg transition p-4 flex flex-col">
+            <div class="bg-white w-[350px] rounded-2xl hover:shadow-lg transition p-4 flex flex-col">
                 {{-- Training Image --}}
-                <img src="{{ asset($train->cover) }}" 
+                <img src="{{ asset('storage/'.$train->cover) }}" 
                 alt="{{ $train->title }}" 
                 class="w-full h-40 object-contain rounded-lg mb-3">
 

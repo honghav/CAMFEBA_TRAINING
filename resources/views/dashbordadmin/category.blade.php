@@ -30,7 +30,7 @@
             <td class="border px-4 py-2">{{ $index + 1 }}</td>
             <td class="border px-4 py-2">
               @if($category->cover)
-                <img src="{{ asset($category->cover) }}" alt="Category Image" width="80" class="rounded">
+                <img src="{{ asset('storage/'.$category->cover) }}" alt="Category Image" width="80" class="rounded">
               @else
                 <span class="text-muted">No image</span>
               @endif

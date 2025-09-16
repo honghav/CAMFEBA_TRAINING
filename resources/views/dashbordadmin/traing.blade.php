@@ -37,7 +37,7 @@
             <td class="border px-4 py-2">
               @if($train->cover)
                 <div class="w-[100px] h-[60px] mx-auto">
-                  <img src="{{ asset($train->cover) }}" 
+                  <img src="{{ asset('storage/'.$train->cover) }}" 
                        alt="Training Image" 
                        class="object-cover w-full h-full rounded">
                 </div>

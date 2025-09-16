@@ -1,7 +1,11 @@
 @extends('layouts.page')
+@section('title', 'Home | CAMFEBA Academy')
+@section('description', 'Join CAMFEBA Academy and take professional courses in Cambodia to advance your career.')
+@section('keywords', 'CAMFEBA, training, courses, Cambodia')
+@section('image', asset('images/banner-homepage.jpg'))
 @section('content')
 <div class="px-10">
-    <div class="relative bg-gradient-to-r bg-gray-100 text-white rounded-xl shadow-lg">
+    <div class="relative bg-gradient-to-r bg-gray-100 text-white rounded-xl ">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
                 <!-- Text Content -->
@@ -19,28 +23,29 @@
                 <div class="mt-10 relative lg:mt-0 lg:col-span-6">
                     <img src="{{ asset('images/banner-homepage.jpg') }}" 
                         alt="App preview" 
-                        class="w-full max-w-lg mx-auto drop-shadow-2xl rounded-xl">
+                        class="w-full max-w-lg mx-auto rounded-xl">
                 </div>
             </div>
         </div>
     </div>
+    <hr>
     {{-- About Camfeba --}}
-    <section class="py-12 my-8 bg-gray-100 rounded-xl shadow-lg">
+    <section class="py-12 my-8 bg-gray-100 rounded-xl">
         <div class="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 lg:gap-12 items-center">
             <div>
-                <h2 class="text-3xl font-bold">About Us</h2>
+                <h2 class="text-3xl font-bold">About Our Training</h2>
                 <p class="mt-6 text-lg text-gray-600">
-                    Our mission is to make technology simple and accessible.  
-                    We focus on user-friendly solutions that save time and deliver results.
+                    We conducted 650+ consultancy and training programs and successfully trained 10,000+ participants.
                 </p>
             </div>
-            <img src="{{ asset('images/banner-homepage.jpg') }}" alt="About" class="rounded-2xl shadow-lg mt-10 lg:mt-0">
+            <img src="{{ asset('images/aboutus.jpg') }}" alt="About" class="rounded-2xl  mt-10 lg:mt-0">
         </div>
     </section>
-
+    <hr>
     {{-- Service of Camfeba Academy --}}
-    <div class="py-12 my-8 bg-gray-100 rounded-xl shadow-lg">
+    <div class="py-12 my-8 bg-gray-100 rounded-xl ">
     <h2 class="text-2xl font-bold text-center mb-8">Our Training Program</h2>
+
     <!-- Flex container to center cards -->
     <div class="flex flex-wrap justify-center gap-6">
         @foreach ($categories as $category)
