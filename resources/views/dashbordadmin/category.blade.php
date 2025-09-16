@@ -30,7 +30,7 @@
             <td class="border px-4 py-2">{{ $index + 1 }}</td>
             <td class="border px-4 py-2">
               @if($category->cover)
-                <img src="{{ asset('storage/' . $category->cover) }}" alt="Category Image" width="80" class="rounded">
+                <img src="{{ asset($category->cover) }}" alt="Category Image" width="80" class="rounded">
               @else
                 <span class="text-muted">No image</span>
               @endif
@@ -75,7 +75,7 @@
                     <div class="mb-3">
                       @if($category->cover)
                         <div class="mb-2">
-                          <img src="{{ asset('storage/' . $category->cover) }}" alt="Category Image" class="img-fluid rounded" style="max-height:100px;">
+                          <img src="{{ asset($category->cover) }}" alt="Category Image" class="img-fluid rounded" style="max-height:100px;">
                         </div>
                       @endif
                       <label for="cover-{{ $category->id }}" class="form-label">Cover Image</label>

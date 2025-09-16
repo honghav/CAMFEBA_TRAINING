@@ -13,7 +13,7 @@ class FAboutUsController extends Controller
     public function index()
     {
         //
-        return view('AboutUs.aboutus');
+        return view('Aboutus.aboutus');
     }
 
     /**

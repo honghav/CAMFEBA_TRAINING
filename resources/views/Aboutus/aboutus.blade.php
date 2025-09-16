@@ -16,7 +16,7 @@
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <!-- Image -->
       <div>
-        <img src="{{ asset('storage/images/banner-homepage.jpg') }}" 
+        <img src="{{ asset('images/banner-homepage.jpg') }}" 
              alt="Our Team" 
              class="rounded-2xl shadow-lg">
       </div>

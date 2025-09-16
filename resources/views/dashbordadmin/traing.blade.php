@@ -37,7 +37,7 @@
             <td class="border px-4 py-2">
               @if($train->cover)
                 <div class="w-[100px] h-[60px] mx-auto">
-                  <img src="{{ asset('storage/' . $train->cover) }}" 
+                  <img src="{{ asset($train->cover) }}" 
                        alt="Training Image" 
                        class="object-cover w-full h-full rounded">
                 </div>
@@ -81,7 +81,7 @@
                         <!-- Cover -->
                         <div class="mb-3">
                           @if($train->cover)
-                            <img src="{{ asset('storage/' . $train->cover) }}" alt="Cover" class="mb-2 w-32 h-32 object-cover rounded">
+                            <img src="{{ asset($train->cover) }}" alt="Cover" class="mb-2 w-32 h-32 object-cover rounded">
                           @endif
                           <label for="cover-{{ $train->id }}" class="form-label">Cover Image</label>
                           <input type="file" class="form-control" id="cover-{{ $train->id }}" name="cover">

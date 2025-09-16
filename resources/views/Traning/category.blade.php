@@ -10,7 +10,7 @@
                class="w-64 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col">
                
                 {{-- Cover Image --}}
-                <img src="{{ asset('storage/' . $category->cover) }}" 
+                <img src="{{ asset($category->cover) }}" 
                      alt="{{ $category->name }}" 
                      class="w-full h-40 object-contain rounded-t-xl">
 

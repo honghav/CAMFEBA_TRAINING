@@ -10,7 +10,7 @@
                 {{-- Cover Image --}}
                 <div class="w-full h-80">
 
-                    <img src="{{ asset('storage/' . $training->cover) }}" 
+                    <img src="{{ asset($training->cover) }}" 
                     alt="{{ $training->title }}" 
                     class="w-full h-full object-contain rounded-lg mb-3">
                 </div>
@@ -55,7 +55,7 @@
                     @foreach ($sources as $sou)
                         @if($sou->image)
                             <div class="w-48 h-48 bg-gray-200 p-2 rounded-lg flex justify-center items-center cursor-pointer">
-                                <img src="{{ asset('storage/' . $sou->image) }}" 
+                                <img src="{{ asset($sou->image) }}" 
                                     alt="Preview Image" 
                                     class="w-full h-full object-contain rounded-lg"
                                     data-bs-toggle="modal" 
@@ -67,13 +67,13 @@
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                 <div class="modal-body p-0">
-                                    <img src="{{ asset('storage/' . $sou->image) }}" 
+                                    <img src="{{ asset($sou->image) }}" 
                                         alt="Preview Image" 
                                         class="w-full h-full object-contain">
                                 </div>
                                 <div class="modal-footer justify-between">
                                     <!-- Download Button -->
-                                    <a href="{{ asset('storage/' . $sou->image) }}" 
+                                    <a href="{{ asset($sou->image) }}" 
                                     download 
                                     class="btn btn-success">
                                         Download

@@ -6,7 +6,7 @@
         
         <!-- Image on Top with 4:3 Aspect Ratio -->
         <div class="w-[1000px] h-[500px] aspect-[4/3]">
-            <img src="{{ asset('storage/'.$category->cover) }}" 
+            <img src="{{ asset($category->cover) }}" 
                  alt="Training Courses" 
                  class="w-full h-full object-contain rounded-xl shadow-2xl">
         </div>
@@ -34,7 +34,7 @@
         
             <div class="bg-white w-[350px] rounded-2xl shadow-md hover:shadow-lg transition p-4 flex flex-col">
                 {{-- Training Image --}}
-                <img src="{{ asset('storage/'.$train->cover) }}" 
+                <img src="{{ asset($train->cover) }}" 
                 alt="{{ $train->title }}" 
                 class="w-full h-40 object-contain rounded-lg mb-3">
 
